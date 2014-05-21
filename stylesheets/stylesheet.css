@@ -456,7 +456,9 @@ footer a:hover {
     border-top: solid 1px #ddd;
     padding: 20px 0;
     min-height: 0;
-    color: #9ddcff;
+  }
+  aside#sidebar p{
+    color: #275da1;
   }
   aside#sidebar a.button {
     display: none;
