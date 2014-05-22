@@ -19,7 +19,7 @@
   <body>
     <header>
       <div class="inner">
-        <h1>lisafeather.github.io</h1>
+        <h1>Web Development, Art & Climbing</h1>
         <h2>Thoughts of a Feather</h2>
         <a href="https://github.com/lisafeather" class="button"><small>Follow me on</small>GitHub</a>
       </div>
@@ -27,20 +27,49 @@
 
     <div id="content-wrapper">
       <div class="inner clearfix">
-        <section id="main-content">          
-          <h3><a name="mentoring" class="anchor" href="#mentoring"><span class="octicon octicon-link"></span></a>May 21, 2014, Mentoring</h3>
+        <section id="main-content"> 
+          <!-- entry ----------------------------------- -->
+         <h3>
+            <a name="vim" class="anchor" href="#vim"><span class="octicon octicon-link"></span></a>
+              VIM + Climbing
+          </h3>
+          <p>Early in my dabbling with UNIX I learned to use the VI editor. This has been very handy over time. When I was living in Thailand rock climbing and dive guiding full time for 6 months, it was a great way to edit and update remote files. I could take a boat to the nearest town to visit a janky little internet cafe and log in to my servers overseas using a DOS window. This way I could keep a travel log to stay closer with with friends and family back home. </p>
+          <img src="images/thailand2.JPG" height=300 />
 
-          <p>Recently I decided to level up in my career so I signed up for a month of mentoring with <a href="http://learn.thoughtbot.com">Thoughtbot</a>. So far this seems to have been a wise decision, although I have yet to actually meet with my mentor or get any real personalized feedback from the mentoring team.</p>
+          <p>Many years later I am trying to return to my VI roots with VIM. It reminds me a bit of when I first learned to lead climb. Until I met climbing, I was terrible at every sport. No one wanted me on their team. Climbing is more a brain game, where even the weak can technique through difficult moves. In leading, everything is harder and scarier, but the payoff is worth it. The thing I feared most was falling while clipping the rope. So I practiced this off the wall until it was muscle memory. Now I can clip quickly, even under duress, freeing up my focus for solving the crux of the climb.</p>
 
-          <p>My goals for this endeavor:
+          <p>The same must be said of learning to use your favorite code editor. You need to be able to use it without thinking, so you are not fumbling for keys and you can focus on more important tasks. Using keystrokes to navigate and edit files makes it easier to have an uninterrupted flow of thought. </p>
+
+          <p>Learning to use VIM is not easy at first, even if you have a history with VI, its predecessor. There are some good resources out there. Thoughtbot has a series of videos that are specific to file navigation within Rails apps, as well as several handy shortcuts. 
+          Here are some others I found useful:
+          <ul>
+            <li>For customization w/ <a href="https://github.com/carlhuda/janus">Janus</a></li>
+            <li>Learn commands <a href="http://www.openvim.com/">with prompts</a>
+              <li><a href="http://vim-adventures.com/">Develop muscle memory while having fun (sort of)</a>
+          </ul>
+        </p>
+
+        <p>However difficult it may be to learn VIM, it is still easier than this <a href="https://www.youtube.com/watch?v=6VLj4KRrMPM">training routine</a>!</p>
+
+          <!-- entry ----------------------------------- -->       
+          <h3>
+            <a name="mentoring" class="anchor" href="#mentoring"><span class="octicon octicon-link"></span></a>
+              Mentoring
+          </h3>
+
+          <p>Many amazing mentors have crossed my path and changed my life for the better. They have guided me toward a successful art career, better nourishment and training habits, as well as 'learning the ropes' of climbing. Professors can be great, but without the TA I never would have made it through my first programming class in college. Even the crazy, foul-mouthed Scottish former hacker who taught me to navigate UNIX changed my life for the better.</p>
+
+          <p>Mentorship, I believe, is the best way to learn something well. Recently I decided to level up my technical skill set, so I signed up for a month of mentoring with <a href="http://learn.thoughtbot.com">Thoughtbot</a>. While I've never formally paid for mentoring, so far this seems to have been a wise decision. Although I have yet to get any real personalized feedback from the mentoring team, it has focused me on a set of particular goals.</p>
+
+          <p>These are:
           <ol>
             <li>better understanding and mastery of Rails</li>
             <li>more confidence that I'm writing the right tests when using TDD</li>
-            <li>make the transition from writing code that just works to writing code that is robust & well designed
+            <li>make the transition from writing code that just works to writing code that is more well designed
             <li>return to my VI roots and start using VIM</li>
             <li>transfer some of my visual skills to pixels by learning web design fundamentals</li>
           </ol>
-          Signing up for mentoring coincided with a major overhaul of my <a href="http://www.lisafeather.com">artist web site</a>, so I began with the "Design for Developers" course. This gave me some ideas, although I need to do more sketches and experimentation with layout. It's long been my belief that beautiful things are not only easier to use but also generally make life better. There is a joy in things that are made well, so this will continue to haunt me until I get it right. </p>
+          Signing up for mentoring coincided with a major overhaul of my <a href="http://www.lisafeather.com">artist web site</a>, so I began with the "Design for Developers" course. This gave me some ideas, although I need to do more sketches and experimentation with layout and have not gotten any feedback from Thoughtbot's mentoring team here. It's long been my belief that beautiful things are not only easier to use but also generally make life better. There is a joy in things that are made well, so this will continue to haunt me until I get it right. </p>
 
           <p>The site currently has over 250 works of art on it, all images of different sizes. Getting all of that into nicely formatted responsive grids with appropriate white space is a challenge. So, work in progress! My goal was a visually inviting site that feels like a coffee table book and is fun to navigate, even on mobile devices.<a href="mailto:lisafeather@gmail.com"> Feedback</a> welcome!</p>
 
@@ -48,7 +77,7 @@
 
           <p>This series also sets you up nicely for the course on TDD, as he urges you to think about what you want new functionality to do before you think about how to implement it. You write code that causes error messages then fix it, much like the red, green, refactor cycle espoused by the TDD philosophy.</p>
 
-          <p>Overall I am very happy with the courses and feel I've learned a lot in a short while. Further learning resources are good, too. One I enjoyed was <a href="http://vimeo.com/12350535">this video</a> of a lecture on SOLID principles by Sandi Metz. She refactors code to use the more relevant parts of SOLID (for Ruby it's only SOD) so your code is easier to extend and test. She discusses <a href="http://en.wikipedia.org/wiki/Dependency_injection">dependency injection</a>, which is a term you also hear bandied about in the Angular world. Regardless of all the debate over TDD, I hope we can still all agree that modular, testable code is better code!</p>
+          <p>Overall I am happy with the courses and feel I've learned a lot in a short while. Further learning resources are good, too. One I enjoyed was <a href="http://vimeo.com/12350535">this video</a> of a lecture on SOLID principles by Sandi Metz. She refactors code to use the more relevant parts of SOLID (for Ruby it's only SOD) so your code is easier to extend and test. She discusses <a href="http://en.wikipedia.org/wiki/Dependency_injection">dependency injection</a>, which is a term you also hear bandied about in the Angular world. Regardless of all the debate over TDD, I hope we can still all agree that modular, testable code is better code!</p>
 
           <p>Another thing we learn about are concerns and using Ruby objects as models by creating classes in your models directory that don't necessarily inherit from ActiveRecord. This is a seriously cool way to break your functionality down into classes that just do one thing. Classes like that are, of course, easier to test and therefore easier to change. Wheeeee! Coding is fun again!</p>
 
@@ -64,7 +93,8 @@
 
           <p>A series of thoughts and ramblings by a web developer and artist with a passion for learning, awful jokes, and rock climbing.</p>
 
-          <h4>May 21st, 2014, <a href="#mentoring">Mentoring</a></h4>
+          <h4>May 21, 2014, <a href="#mentoring">Mentoring</a></h4>
+          <h4>May 22, 2014, <a href="#vim">VIM + Climbing</a></h4>
 
         </aside>
       </div>
