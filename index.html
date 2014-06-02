@@ -27,8 +27,42 @@
 
     <div id="content-wrapper">
       <div class="inner clearfix">
-        <section id="main-content"> 
-          <!-- entry ----------------------------------- -->
+        <section id="main-content">
+         <!-- entry ----------------------------------  -->
+         <h3>
+            <a name="TDD" class="anchor" href="#TDD"><span class="octicon octicon-link"></span></a>
+             Outside-in TDD - making life simple
+          </h3>
+          <p>First off, I'd just like to point out that Capybaras, the animals, are incredibly cute. Also, why is it that animals wearing glasses or goggles are automatically at least 65% more adorable?! </p>
+
+          <p>Next I'd like talk about what I've recently learned with respect to TDD with <a href="https://rubygems.org/gems/capybara">Capybara</a>, the Ruby gem.</p>
+          <img src="images/capybara.jpg" height=300 />
+
+          <p>Although I am not new to web technologies, TDD is a relatively new concept for me. When I first learned to write web apps, Perl was the language of the web. Camel lovers sometimes took pride in writing code that was indeciphrable. You didn't have time to test while you were running for your life in front of a raging t-rex.</p>
+
+          <p>Code was written by developers and tested by testers. I shudder to think of all the view-testing I've done <i>manually</i>, clicking through each link and button, often while staring at a gawd-awful purple background as no one knew how to make things readable before Apple reinvented white for us.</p>
+
+          <p>Luckily, times have changed! Coming to TDD late in the game has presented its own challenges, but has advantages too. I see why, but have struggled with how. Even after beginning to understand the syntax of Rspec, I still wondered where to start.</p>
+
+          <p>By the time I started to learn about Outside-In TDD, I felt pretty comfortable writing controller tests after the fact. Yes, I know, this is not TDD! In fact, many of those who espouse the concept of Outside-In TDD will tell you that writing controller tests can often end up being redundant, as you have already tested your actions through the views. By the time you've written a controller, it's been tested through your action test through your action tests. Your unit tests can then focus mainly on your models. </p>
+
+          <p>This answers the question of "where to start?" Think first about how your app should behave then write failing tests that specify this behavior. You limit yourself to the most simple failing test, then only write enough code to make it pass in the most inane way possible. What?! My brain cries out to overthink this. It's an exercise in being completely pedantic. It's as if you were a robot who just wrote a failing test, made the test pass, then made the code actually functional. Don't get me wrong. I have much love for robots, but do I want to become one?!</p>
+
+          <p>The simplicity of this approach is really starting to grow on me, however. It frees up so much space in your head when you are forced to just focus on one thing at a time. Rather than turning you into <a href="https://www.youtube.com/watch?v=XtTL0A5nhfk&feature=kp">Bender</a>, it keeps you staring directly at the functionality you want. By not overthinking implementation details in the beginning, you can focus on how you want your code to act. No one will even require you to do the robot dance when you are through! </p>
+
+          <p>Capybara, the gem, is like a tiny monkey who runs through all the boring mechanics of testing your views so you never even have to open a web browser during the development process. If you do things the way you ought (envision giant pointing finger here) your controller will only use restful actions, the results of which will have been tested through your views.</p>
+
+          <p>Here are some further resources:
+            <ul>
+              <li> <a href="http://www.slideshare.net/danielkolman1/tdd-outsidein">A great slide presentation</a>, as a bonus it's funny </li>
+              <li> <a href="https://learn.thoughtbot.com/screencasts/24-getting-the-tdd-ball-rolling">Getting the TDD ball Rolling</a> by <h href="https://learn.thoughtbot.com/">Thoughtbot</a></li>
+            <li> <a href="http://www.amazon.com/The-RSpec-Book-Behaviour-Development/dp/1934356379">The Rspec book</a></li>
+          </ul>
+          Please let me know if you have other great resources to recommend, as I am still learning!</p>
+          <a href="./index.html">Back to top</a>
+
+
+          <!-- entry ----------------------------------  -->
          <h3>
             <a name="vim" class="anchor" href="#vim"><span class="octicon octicon-link"></span></a>
               VIM + Climbing
@@ -50,8 +84,9 @@
         </p>
 
         <p>However difficult it may be to learn VIM, it is still easier than this <a href="https://www.youtube.com/watch?v=6VLj4KRrMPM">training routine</a>!</p>
+        <a href="./index.html">Back to top</a>
 
-          <!-- entry ----------------------------------- -->       
+          <!-- entry ----------------------------------- -->
           <h3>
             <a name="mentoring" class="anchor" href="#mentoring"><span class="octicon octicon-link"></span></a>
               Mentoring
@@ -80,26 +115,33 @@
           <p>Overall I am happy with the courses and feel I've learned a lot in a short while. Further learning resources are good, too. One I enjoyed was <a href="http://vimeo.com/12350535">this video</a> of a lecture on SOLID principles by Sandi Metz. She refactors code to use the more relevant parts of SOLID (for Ruby it's only SOD) so your code is easier to extend and test. She discusses <a href="http://en.wikipedia.org/wiki/Dependency_injection">dependency injection</a>, which is a term you also hear bandied about in the Angular world. Regardless of all the debate over TDD, I hope we can still all agree that modular, testable code is better code!</p>
 
           <p>Another thing we learn about are concerns and using Ruby objects as models by creating classes in your models directory that don't necessarily inherit from ActiveRecord. This is a seriously cool way to break your functionality down into classes that just do one thing. Classes like that are, of course, easier to test and therefore easier to change. Wheeeee! Coding is fun again!</p>
+          <a href="./index.html">Back to top</a>
 
-
-          <!-- <pre><code>$ cd your_repo_root/repo_name
-          $ git fetch origin
-          $ git checkout gh-pages
-          </code></pre>
- -->
         </section>
 
         <aside id="sidebar">
+        <div class="entry-menu" style="padding-bottom: 50px">
 
           <p>A series of thoughts and ramblings by a web developer and artist with a passion for learning, awful jokes, and rock climbing.</p>
 
           <h4>May 21, 2014, <a href="#mentoring">Mentoring</a></h4>
           <h4>May 22, 2014, <a href="#vim">VIM + Climbing</a></h4>
+          <h4>June 1, 2014, <a href="#TDD">TDD, where to begin?!</a></h4>
+       </div>
+       <div class="apps">
+         <h4>Here are some fun little apps that don't even pretend to solve real world problems!</h4>
+          <ul>
+            <li>Suppose you have yes/no/maybe type questions and want some cryptic <a href="http://magic-8-ball.herokuapp.com">answers</a>?</li>
+            <li>Suppose you want to write an online dating <a href="http://profile-madlibber.herokuapp.com/">profile</a> via mad libs?</li>
+            <li>What if you have friends all over the world that you want to play <a href="http://tele-pictionary.herokuapp.com/">Telephone Pictionary</a> with?</li>
+            <li>Similarly, what if you want to play <a href="http://exquisitercorpse.herokuapp.com">crazy drawing games</a> with your friends living far away?</li>
+          </ul>
+      </div>
 
         </aside>
       </div>
     </div>
 
-  
+
   </body>
 </html>
