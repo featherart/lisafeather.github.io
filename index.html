@@ -28,8 +28,60 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-         <!-- entry ----------------------------------  -->
          <h3>
+            <a name="factory-girl" class="anchor" href="#factory-girl"><span class="octicon octicon-link"></span></a>
+            Factory Girl
+          </h3>
+          <p>First of all, what a cool retro-futuristic name! Who knows if it's a reference to the film about Andy Warhol's muse, or the Rolling Stones song. Maybe neither. More likely it's a nod towards the <a href="http://en.wikipedia.org/wiki/Factory_method_pattern">design pattern</a>.</p>
+            <img src="http://wunderbuzz.co.uk/wp-content/uploads/factorygirl_.jpg" height=300 />
+
+            <p>It's also pretty nifty as a testing tool. Why, you ask? First off, as the name implies, it gives you a factory for <a href="http://martinfowler.com/articles/mocksArentStubs.html">mocks</a> of objects you want to test. Suppose that your code focuses on one particular object, the Cookie. It has two attributes, flavor and crunch level. You might drive out your cookie jar functionality with a test something like this:</p>
+
+            <pre><code>
+            feature 'monitor cookie supply' do
+              scenario 'last cookie is eaten' do
+                Cookie.create(flavor: 'chocolate bomb', crunch_level: 'ear-rattling')
+                user_eats_cookie('messy')
+                user_licks_lips
+                expect(cookie.jar.length).to eq 0
+              end
+            end
+            </pre></code>
+
+            <p>This code will work if you have only a few tests that deal with cookies of different flavors. But suppose you are a supplier to the Cookie Monster, and you have to keep track of many cookies? In that case you might use the gem 'factory_girl_rails'. This gem requires a few minimal configurations before you are ready to rock. First, open up your spec_helper.rb file and add this line towards the bottom:</p>
+
+            <pre><code>
+            config.include FactoryGirl::Syntax::Methods
+            </pre></code>
+
+            <p>Now you can refactor your tests to refer to the cookie factory rather than creating a new Cookie for each scenario.</p>
+
+           <pre><code>
+            feature 'monitor cookie supply' do
+              scenario 'last cookie is eaten' do
+                create(:cookie, flavor: 'chocolate bomb', crunch_level: 'ear-rattling')
+                user_eats_cookie('messy')
+                user_licks_lips
+                expect(cookie.jar.length).to eq 0
+              end
+            end
+            </pre></code>
+
+            <p>Now if you run your test just like this, Rspec will complain that the factory "cookie" does not exist. So you also need to add a file 'factories.rb' to your spec/ directory where you create the cookie factory. <p>
+
+            <pre><code>
+            FactoryGirl.define do
+              factory :cookie do
+                flavor: 'chocolate chip walnut'
+                crunch_level: 'medium'
+              end
+            end
+            </pre></code>
+
+            <p>That's it! Now every time you want to mock out a Cookie, all you have to do is refer to the cookie factory. Thanks <a href="https://github.com/thoughtbot/factory_girl">Factory Girl</a>!</p>
+ <a href="./index.html">Back to top</a>
+
+            <h3>
             <a name="TDD" class="anchor" href="#TDD"><span class="octicon octicon-link"></span></a>
              Outside-in TDD - making life simple
           </h3>
@@ -38,19 +90,19 @@
           <p>Next I'd like talk about what I've recently learned with respect to Outside-in TDD using tools like <a href="https://rubygems.org/gems/capybara">Capybara</a>, the Ruby gem.</p>
           <img src="images/capybara.jpg" height=300 />
 
-          <p>Although I am not new to web technologies, TDD is a relatively new concept for me. Who had time to test while running from a raging t-rex? Traditionally, code was written by developers and tested by testers. Many developers test their own code now but it is often passed through a QA team before it moves out of staging into development.</p>
+          <p>Although I am not new to web technologies, TDD is a relatively new concept for me. Who had time to test while running from a raging t-rex? Traditionally, code was written by developers and tested by testers. Many developers test their own code now but it is often passed through a QA team before it moves out of staging into production.</p>
 
-          <p>When I first moved from static pages to writing Perl CGI apps, user interaction was often tested <i>manually</i>, so you spent hours clicking through each fixture like a brain-dead monkey, inevitably forgetting something important your first user would surely uncover.</p>
+          <p>When I first moved from static HTML pages to writing Perl CGI apps, we tested manually. For even the tiniest change you'd spend hours repeatedly clicking through each fixture like a brain-dead monkey, inevitably forgetting something important your first user would surely uncover.</p>
 
-          <p>Luckily, times have changed! Coming to TDD late in the game has presented its own challenges, but has advantages too. I see why, but have struggled with how. Even after beginning to understand the syntax of Rspec, I still wondered where to start. The wildly different views in this arena didn't help, either. The <a href="http://en.wikipedia.org/wiki/Integration_testing">Wikipedia</a> entry on integration tests says it happens once all the unit testing is complete. Proponents of Outside-in testing give the opposite advice. <a href="http://david.heinemeierhansson.com/2014/tdd-is-dead-long-live-testing.html">DHH</a> thinks we should focus on regression testing and TDD is dead because of it's propensity to create a complex web of intermediary objects and interdependancies. His objection to TDD-induced over-architecture has mostly been met with raised eyebrows from the Rails community. </p>
+          <p>Luckily, times have changed! Coming to TDD late in the game has presented its own challenges, but has advantages too. I see why, but have struggled with how. Even after beginning to understand the syntax of Rspec, I still wondered where to start. The wildly different views in this arena didn't help, either. The Wikipedia entry on  <a href="http://en.wikipedia.org/wiki/Integration_testing">integration tests</a> says it happens once all the unit testing is complete. Proponents of Outside-in testing give the opposite advice. <a href="http://david.heinemeierhansson.com/2014/tdd-is-dead-long-live-testing.html">DHH</a> thinks we should focus on regression testing and TDD is dead because of it's propensity to create over-architected solutions. His objection seems mostly to have been met with raised eyebrows and a collective shrug from the Rails community. </p>
 
-          <p>My first real experience of writing tests on the job involved writing controller tests to add new functionality. I was also asked to fill in any missing controller tests so our coverage would be more complete. Like most small startups right now we were working in a continuous integration environment, so once tests were green new changes got deployed. Things that had not been tested would go into production, sometimes causing errors our users would catch. Yikes! Having a QA team is maybe not such a bad idea after all.</p>
+          <p>My first real experience of writing Rspec tests on the job involved writing integration tests then controller tests to add new functionality. I was also asked to fill in any missing controller tests so our coverage would be more complete. At the time I was not confident enough to point out that this seemed redundant in some cases, as integration tests had covered controller actions nicely. We were working in a continuous integration environment, so once tests went green new changes got deployed. Things that had not been tested properly would go into production, sometimes causing errors our users would catch. Yikes! Having a monkey-bot click through your site for you is great, but a simple visual click-through before changes go live isn't maybe a terrible idea either.</p>
 
           <p>By the time I started to learn about Outside-In TDD, I felt pretty comfortable writing controller tests after the fact. Yes, I know, this is not TDD! In fact, many of those who espouse the concept of Outside-In TDD will tell you that writing controller tests often ends up being redundant, as you have already tested your actions through the integration tests. Your unit tests focus mainly on your models. </p>
 
           <p>The idea is to begin with how you want your app to behave (the "B" in BDD), write integration tests, then drill down into unit tests. Tests focus on results, not implementation. This answers the question of "where to start?" Think first about how your app should behave, write failing tests that specify this behavior, make them green, then refactor. You limit yourself to the most simple failing test, then only write enough code to make it pass in the most inane way possible. What?! My brain cries out to overthink this. It's an exercise in being completely pedantic. It's as if you were a robot who only knows a few basic rules and executes them repeatedly. Don't get me wrong. I have much love for robots, but do I want to become one?!</p>
 
-          <p>The simplicity of this approach is really starting to grow on me, however. It frees up so much space in your head when you are forced to just focus on one thing at a time. Rather than turning you into <a href="https://www.youtube.com/watch?v=XtTL0A5nhfk&feature=kp">Bender</a>, it keeps you staring directly at the functionality you want. By not overthinking implementation details in the beginning, you can focus on how you want your code to act. No one will even require you to do the robot dance when you are through! </p>
+          <p>The simplicity of this approach is really starting to grow on me, however. It frees up so much space in your head when you are forced to focus on one thing at a time. Rather than turning you into <a href="https://www.youtube.com/watch?v=XtTL0A5nhfk&feature=kp">Bender</a>, it keeps you staring directly at the functionality you want. By not overthinking implementation details in the beginning, you can focus on how you want your code to act. No one will even require you to do the robot dance when you are through! </p>
 
           <p>Capybara, the gem, is like a tiny monkey who runs through all the boring mechanics of testing your views so you never even have to open a web browser during the development process. If you do things the way you ought (envision giant pointing finger here) your controller will only use restful actions, the results of which will have been tested through your views.</p>
 
@@ -76,7 +128,6 @@
           <a href="./index.html">Back to top</a>
 
 
-          <!-- entry ----------------------------------  -->
          <h3>
             <a name="vim" class="anchor" href="#vim"><span class="octicon octicon-link"></span></a>
               VIM + Climbing
@@ -100,7 +151,6 @@
         <p>However difficult it may be to learn VIM, it is still easier than this <a href="https://www.youtube.com/watch?v=6VLj4KRrMPM">training routine</a>!</p>
         <a href="./index.html">Back to top</a>
 
-          <!-- entry ----------------------------------- -->
           <h3>
             <a name="mentoring" class="anchor" href="#mentoring"><span class="octicon octicon-link"></span></a>
               Mentoring
@@ -141,6 +191,7 @@
           <h4>May 21, 2014, <a href="#mentoring">Mentoring</a></h4>
           <h4>May 22, 2014, <a href="#vim">VIM + Climbing</a></h4>
           <h4>June 1, 2014, <a href="#TDD">TDD, where to begin?!</a></h4>
+          <h4>June 2, 2014, <a href="#factory-girl">Factory Girl</a></h4>
        </div>
        <div class="apps">
          <h4>Here are some fun little apps that don't even pretend to solve real world problems!</h4>
