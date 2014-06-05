@@ -30,12 +30,14 @@
         <section id="main-content">
          <h3>
             <a name="factory-girl" class="anchor" href="#factory-girl"><span class="octicon octicon-link"></span></a>
-            Factory Girl
+            Testing Rails apps with Factory Girl
           </h3>
           <p>First of all, what a cool retro-futuristic name! Who knows if it's a reference to the film about Andy Warhol's muse, or the Rolling Stones song. Maybe neither. More likely it's a nod towards the <a href="http://en.wikipedia.org/wiki/Factory_method_pattern">design pattern</a>.</p>
             <img src="http://wunderbuzz.co.uk/wp-content/uploads/factorygirl_.jpg" height=300 />
 
-            <p>It's also pretty nifty as a testing tool. Why, you ask? First off, as the name implies, it gives you a factory for <a href="http://martinfowler.com/articles/mocksArentStubs.html">mocks</a> of objects you want to test. Suppose that your code focuses on one particular object, the Cookie. It has two attributes, flavor and crunch level. You might drive out your cookie jar functionality with a test something like this:</p>
+            <p>It's also pretty nifty as a testing tool. Why, you ask? First off, as the name implies, it gives you a factory for test doubles of your objects. The term "test double" comes from the film industry, incidentally. It encapsulates both mocks, which test the behavior of objects, and subs, which test state. For a very well written explanation of this, read Martin Fowler's <a href="http://martinfowler.com/articles/mocksArentStubs.html">article</a>. According to Fowler, TDD testers will either choose to test using the original object, or they will use mocks. Much of this seems to depend on what level of complexity test objects have and how often the same objects get reused. </p>
+
+            <p>Suppose that your app focuses on one particular object, the Cookie, with two attributes of flavor and crunch level. You might drive out your cookie jar functionality with an integration test:</p>
 
             <pre><code>
             feature 'monitor cookie supply' do
@@ -48,13 +50,13 @@
             end
             </pre></code>
 
-            <p>This code will work if you have only a few tests that deal with cookies of different flavors. But suppose you are a supplier to the Cookie Monster, and you have to keep track of many cookies? In that case you might use the gem 'factory_girl_rails'. This gem requires a few minimal configurations before you are ready to rock. First, open up your spec_helper.rb file and add this line towards the bottom:</p>
+            <p>Each time this test is run a new Cookie object gets created, requiring a call to the database. If you only have only a few tests that deal with cookies this won't be an issue. But suppose you are working for a supplier to the Cookie Monster, and your Rails app has to keep track of many cookies? You might have loads of tests with the Cookie object. In that case you might use a test double to expedite your tests. A good way to do this is the <a href="https://github.com/thoughtbot/factory_girl_rails">factory_girl_rails</a>. This gem requires a few minimal configurations before you are ready to rock. The spec_helper.rb file needs to know about it:</p>
 
             <pre><code>
             config.include FactoryGirl::Syntax::Methods
             </pre></code>
 
-            <p>Now you can refactor your tests to refer to the cookie factory rather than creating a new Cookie for each scenario.</p>
+            <p>Now you can refactor your tests to refer to the cookie factory rather than create a new Cookie for each scenario.</p>
 
            <pre><code>
             feature 'monitor cookie supply' do
@@ -67,7 +69,7 @@
             end
             </pre></code>
 
-            <p>Now if you run your test just like this, Rspec will complain that the factory "cookie" does not exist. So you also need to add a file 'factories.rb' to your spec/ directory where you create the cookie factory. <p>
+            <p>Now if you run your test, Rspec will complain that the factory "cookie" does not exist. So you also need to add a 'factories.rb' file to your spec/ directory to create the cookie factory. <p>
 
             <pre><code>
             FactoryGirl.define do
@@ -78,7 +80,7 @@
             end
             </pre></code>
 
-            <p>That's it! Now every time you want to mock out a Cookie, all you have to do is refer to the cookie factory. Thanks <a href="https://github.com/thoughtbot/factory_girl">Factory Girl</a>!</p>
+            <p>Now every time you want to mock out a Cookie, all you have to do is refer to the cookie factory. Thanks <a href="https://github.com/thoughtbot/factory_girl">Factory Girl</a>!</p>
  <a href="./index.html">Back to top</a>
 
             <h3>
