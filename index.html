@@ -28,6 +28,44 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
+          <h3>
+            <a name="mv-rails" class="anchor" href="#mv-rails"><span class="octicon octicon-link"></span></a>
+            MV* + Rails
+          </h3>
+          <p>The MVC design pattern originated with SmallTalk in 1978. It predates so many things it's no wonder that many different takes on it have evolved. Models are usually some form of data store, be it an actual database or JSON. Views are an interface, be it templates used a presentation layer or an API feeding another app. In some cases the View is actually not seen. The Controller serves as the glue between the Model and the View, handling interaction and directing user actions. Some may disagree with this definition. One thing we can all agree on is that it's best to separate your concerns, and it's best to avoid JavaScript spaghetti. This has resulted in a bounty of JavaScript frameworks that approach the MVC design pattern in different ways. In his <a href="http://www.smashingmagazine.com/2012/07/27/journey-through-the-javascript-mvc-jungle/">article</a>, Addy Osmani guides us gently through the MV* framework jungle. Much has changed since 2012, when the article was written, but it is a good place to start.</p>
+            <img src="http://www.hot-map.com/images/tn/Themenkarte-Paris-Métro-Liniennetz-5308.jpg" height=300 />
+         <p>To satisfy my own curiosity about using JS frameworks within a Rails app, I tried building the same app using Backbone.js, Angular.js, and Ember.js. I'd had the most exposure to Backbone previously, so that one was easiest for me. This in no way suggests that Backbone is the easiest framework to learn. Au contraire, mon fr&egrave;re! Backbone is the granddaddy of them all and has the crotchety minimalism to prove it. It is the least opinionated of the three.</p>
+
+          <p>IMHO it's always better to start with a standalone app using a new framework, then progress to using the framework in a Rails app. My exposure to Backbone began with a weekend workshop through <a href="http://www.girldevelopit.com/chapters/san-francisco">Girl Develop It</a> in which we built a small app to catalog music. This helped me to understand the basic components you get with Backbone, Models, Views and Collections. (You also get Routes, but many Backbone developers opt to use their own routing or Pages.js.)</p>
+
+          <p>Later I went on to teach Backbone at a web development bootcamp. It was interesting to watch students who had a certain level of confidence fall apart when introduced to Backbone. To someone with a strong background in OO programming it will be intuitive. For those new to programming, it is apparently really difficult to understand the why of it. It made a lot more sense to students when we did an in-class coding session showing how Backbone Models and Collections can be created and displayed. Yay objects! But until one has worked with a large legacy codebase full of crazy spaghetti, the why of it will not be really clear.</p>
+
+          <p>As part of my teaching prep I followed the <a href="http://railscasts.com/episodes/323-backbone-on-rails-part-1?view=asciicast">Railscasts tutorial</a> on making a small Rails app using Backbone. All the Railscasts on MV* are in CoffeeScript, which may make it a bit more confusing at first. It only took a few hours to build my little app and understand how all the parts fit together. The gem used is <a href="https://github.com/codebrew/backbone-rails">backbone-rails</a>. There is a little app tutorial on the Github page that's more up to date. In 2013 you had to use the <code>--use-javascript</code> extension when generating your files if you didn't want to end up with CoffeeScript, but I saw no mention of this and the code generated appears to be straight JavaScript. A lot of big Backbone houses that previously used CoffeeScript have been switching back to JavaScript for ease of debugging.</p>
+
+          <p>Ryan Bates points out that 'views in Backbone behave more like controllers in Rails', which really helped me wrap my head around that. The Rails gem comes with a 3 generators that create your Backbone components for you. Your Rails controller just responds with JSON, so it's quite slim. In summary, Backbone is the oldest and most established of the MV* frameworks. It was my introduction to working with OO JavaScript in a formal way. It's pretty lightweight and not very opinionated, making it very flexible. It is really more MVP, since Views handle much of the interactivity that Controllers normally would.</p>
+
+          <p>If Backbone is the grumpy old pappy, the hot new kid in town is definitely Angular. To someone who once used a lot of JavaScript embedded in HTML, Angular feels a bit like kids born in the '90s wearing acid washed jeans. Yipes, your HTML has code in it again! Why bring back the worst things from previous decades?</p>
+
+           <p>After I walked through this <a href="https://docs.angularjs.org/tutorial">tutorial</a>, I found it pretty nifty! You can use a scaffold to generate an Angular app that basically gives you a Node Express type framework with a full test suite built in. You'll get a lot of interactivity without ever touching the Node part of the app.<p>
+
+           <p>Angular has a more classic approach to the MVC pattern. Models have 2-way data bindings, which is a huge feature. Views are DOM elements generated by Models and Controllers. Scopes are classes that observe Models and propigate their changes.
+           It gives you filtering with very little code. On the downside, it is extremely opinionated and I found it a little bit more complicated to use with a Rails app.<p>
+
+          <p>Going back to <a href="http://railscasts.com/episodes/405-angularjs?view=comments">Railscasts</a> I was able to build the same app using Angular. This time it did not require a part one and two. Still, I didn't feel like I could take this information and build an app. So I did another tutorial and came up with <a href="https://github.com/lisafeather/stork_watch">Stork Watch</a>. Then I built an app that gets results from the Twitter API but in the end the app worked better with simple JQuery calls.<p>
+
+          <p>So my take on Angular is that it's probably great if you're building a Node app. My jury is still out on Rails + Angular, even though I know a few developers have taken this direction and are happy with it. I'm really curious to know how it compares in terms of speed. My spider sense tells me it can be much slower since you have so much more framework involved. Rails is already pretty framework heavy, so a Node Express app seems like a better fit anyway.</p>
+
+          <p>Lastly I tried Ember. The first step was to build the ever-popular <a href="http://emberjs.com/guides/getting-started/">Todo App</a> on their tutorial page. A first step recommended was to add the <a href="https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi ">Ember Inspector </a>to your Chrome browser. I did this and got an extra tab in my Chrome inspector called "Ember". When clicked on it informed me that this was not an Ember app, even after I had included the Ember.js library and used Ember's create() method to create my Todo object. Alrighty then! There is nice debug information in the console, though. It tells you right off which js libraries and what versions you have, which is quite useful.</p>
+
+          <p>Overall I found Ember really easy and intuitive as a standalone app. You have a lot of structure but also flexibility. Like Backbone, the entire ember.js library is one file. Ember actually feels a bit like the more structured offspring of Backbone. There are some similarities, but Ember has more separation between all of the MVC layers. Ember apps are organized around Routes, which makes it much more opinionated than Backbone. It gives you this without giving you a ton of other stuff you may or may not use, such as  libraries for animation, filtering and such. All of this may be very cool or very useless, depending on what you are building.</p>
+
+          <p>Ember is probably the most compatible JS framework with Rails apps. Going back to the Railscasts on it, I tried and failed to build the same app. The tutorial was a bit too dated for my setup, so I went looking for other projects to test out my new Ember knowledge. There are many Rails developers choosing Ember, so this is not hard to find. I would actually recommend skipping the Railscasts and using a more recent code sample, as Ember has evolved a lot in the past 2 years. Using Ember with a Rails app feels very intuitive. They are both opinionated in similar ways, so if you have an intuitive feel for the Rails way, Ember will be the most natural extension of that.</p>
+
+          <p>In conclusion, I think the best framework to use depends on your goals. If you want a bit of structure but not too many opinions, use Backbone. If you are building a Rails app and maintainability is really important, you might like the convention over configuration aspect to carry through to your JS framework. So pick Ember. If you are building a Node app and you want a lot of rich client-side features, Angular may be a good choice. </p>
+
+          <p>Of course there are many other choices out there that I have not even covered here! If scaling is a big issue, you may instead opt for React. Apparently React doesn't care which JS framework you use, as long as it isn't Angular. The React author also feels that templates aren't really separating your concerns, so they are looking at frameworks like Om that aren't really frameworks at all, but rather a state of mind type thing. In the end the important thing is to use something to separate your concerns and create objects, so you can test your code and other people can read it.</p>
+
+         <a href="./index.html">Back to top</a>
          <h3>
             <a name="factory-girl" class="anchor" href="#factory-girl"><span class="octicon octicon-link"></span></a>
             Testing Rails apps with Factory Girl
@@ -50,7 +88,7 @@
             end
             </pre></code>
 
-            <p>Each time this test is run a new Cookie object gets created, requiring a call to the database. If you only have only a few tests that deal with cookies this won't be an issue. But suppose you are working for a supplier to the Cookie Monster, and your Rails app has to keep track of many cookies? You might have loads of tests with the Cookie object. In that case you might use a test double to expedite your tests. A good way to do this is the <a href="https://github.com/thoughtbot/factory_girl_rails">factory_girl_rails</a>. This gem requires a few minimal configurations before you are ready to rock. The spec_helper.rb file needs to know about it:</p>
+            <p>Each time this test is run a new Cookie object gets created, requiring a call to the database. If you only have only a few tests that deal with cookies this won't be an issue. But suppose you are working for a supplier to the Cookie Monster, and your Rails app has to keep track of many cookies? You might have loads of tests with the Cookie object. In that case you might use a test double to expedite your tests. A good way to do this is the <a href="https://github.com/thoughtbot/factory_girl_rails">factory_girl_rails</a> gem. This gem requires a few minimal configurations before you are ready to rock. The spec_helper.rb file needs to know about it:</p>
 
             <pre><code>
             config.include FactoryGirl::Syntax::Methods
@@ -194,6 +232,8 @@
           <h4>May 22, 2014, <a href="#vim">VIM + Climbing</a></h4>
           <h4>June 1, 2014, <a href="#TDD">TDD, where to begin?!</a></h4>
           <h4>June 2, 2014, <a href="#factory-girl">Factory Girl</a></h4>
+          <h4>July 16, 2014, <a href="#mv-rails">
+          MV* + Rails</a></h4>
        </div>
        <div class="apps">
          <h4>Here are some fun little apps that don't even pretend to solve real world problems!</h4>
